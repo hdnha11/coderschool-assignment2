@@ -4,7 +4,7 @@
 
 Submitted by: **Hoang Duc Nha**
 
-Time spent: **X** hours
+Time spent: **8** hours
 
 URL: **[https://nha-chat.herokuapp.com](https://nha-chat.herokuapp.com)**
 
