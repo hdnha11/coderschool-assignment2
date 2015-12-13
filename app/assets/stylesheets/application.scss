@@ -1,0 +1,20 @@
+@import 'bootstrap';
+@import 'framework';
+@import 'sessions';
+@import 'users';
+
+nav img {
+  height: 30px;
+}
+
+.card {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.app-message {
+  margin-bottom: 0;
+  .close-message {
+    line-height: 12px;
+  }
+}

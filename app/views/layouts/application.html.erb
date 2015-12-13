@@ -8,7 +8,43 @@
 </head>
 <body>
 
-<%= yield %>
+    <%= flash_messages %>
+    <nav class="navbar navbar-light bg-faded">
+
+        <!-- Toggle Button -->
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#nav-content">
+            &#9776;
+        </button>
+        <!-- Nav Content -->
+        <div class="collapse navbar-toggleable-xs" id="nav-content">
+            <a class="navbar-brand" href="/"><%= image_tag 'logo-small' %></a>
+            <ul class="nav navbar-nav">
+                <% unless sign_in? %>
+                    <li class="nav-item">
+                        <%= link_to 'Sign Up', root_path, class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Sign In', login_path, class: "nav-link" %>
+                    </li>
+                <% else %>
+                    <li class="nav-item">
+                        <%= link_to 'Sign Out', log_out_path, class: "nav-link" %>
+                    </li>
+                <% end %>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= users_path %>">Browse Profiles</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <%= yield %>
+
+    <footer class="footer-12">
+        <div class="container">
+            Chat-Chit everywhere
+        </div>
+    </footer>
 
 </body>
 </html>
