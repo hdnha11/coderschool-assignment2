@@ -31,4 +31,9 @@ class SessionsController < ApplicationController
       redirect_to root_path, flash: {error: "Cannot login with Facebook. Please try again!"}
     end
   end
+
+  def fail_callback
+    message = params[:message]
+    redirect_to root_path, flash: {error: "Login with Facebook fail: #{message}"}
+  end
 end
