@@ -1,0 +1,53 @@
+<div class="container">
+    <h2 class="title"><%= "#{@type.capitalize} Messages" %></h2>
+
+    <table class="table">
+        <thead class="thead-default">
+            <tr>
+                <th>#</th>
+                <% if @type == 'incomming' %>
+                    <th>From</th>
+                <% end %>
+                <% if @type == 'outcomming' %>
+                    <th>To</th>
+                <% end %>
+                <th>Sent date</th>
+                <% if @type == 'incomming' %>
+                    <th>Action</th>
+                <% end %>
+                <% if @type == 'outcomming' %>
+                    <th>Status</th>
+                <% end %>
+            </tr>
+        </thead>
+        <tbody>
+            <% @messages.each_with_index do |message, index| %>
+                <tr class="<%= "unread" unless message.read %>">
+                    <td><%= index + 1 %></td>
+                    <% if @type == 'incomming' %>
+                        <td><%= message.sender.name %></td>
+                    <% end %>
+                    <% if @type == 'outcomming' %>
+                        <td><%= message.recipient.name %> </td>
+                    <% end %>
+                    <td><%= message.created_at.strftime("%b %d, %Y") %></td>
+                    <% if @type == 'incomming' %>
+                        <% if message.read %>
+                            <td>Read</td>
+                        <% else %>
+                            <td><%= link_to "Read", message %></td>
+                        <% end %>
+                    <% end %>
+                    <% if @type == 'outcomming' %>
+                        <% if message.read %>
+                            <td><%= "Read on #{message.updated_at.strftime("%b %d, %Y")}" %></td>
+                        <% else %>
+                            <td>Unread</td>
+                        <% end %>
+                    <% end %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+</div>

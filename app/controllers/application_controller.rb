@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def skipped_if_login
-    redirect_to users_path if sign_in?
+    redirect_to messages_path if sign_in?
   end
 end

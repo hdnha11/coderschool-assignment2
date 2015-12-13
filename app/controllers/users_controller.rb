@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(get_user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path, flash: {success: "Welcome #{@user.name}"}
+      redirect_to messages_path, flash: {success: "Welcome #{@user.name}"}
     else
       redirect_to root_path, flash: {error: "Oops! Something goes wrong. #{@user.errors.messages.collect {|k, v| "#{k}: #{v.join(' and ')}"}.join(', ')}"}
     end

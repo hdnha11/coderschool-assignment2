@@ -1,0 +1,15 @@
+<div class="container">
+    <h2 class="title"><%= "Message from #{@message.sender.name}" %></h2>
+
+    <% unless @read %>
+        <blockquote class="blockquote">
+            <p><%= @message.content %></p>
+            <footer><%= "Since #{@message.created_at.strftime("%b %d, %Y")}" %></footer>
+        </blockquote>
+    <% else %>
+        <div class="alert alert-danger" role="alert">
+            <strong>Oops!</strong> You have read this message already.
+        </div>
+    <% end %>
+
+</div>
