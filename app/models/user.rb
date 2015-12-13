@@ -13,4 +13,19 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
   validates :name, presence: true
+
+  def self.from_omniauth(auth)
+    # Note that Facebook sometimes does not return email,
+    # in that case you can use facebook-id@facebook.com as a workaround
+    # email = auth[:info][:email] || "#{auth[:uid]}@facebook.com"
+    email = "#{auth[:uid]}@facebook.com" # Always use fake email to avoid modify model to add provider field and other validations
+    user = where(email: email).first_or_initialize
+
+    # Set other properties on user here.
+    user.name = auth[:info][:name]
+    user.image_url = auth[:info][:image]
+
+    # Finally, return user
+    user.save(:validate => false) && user
+  end
 end

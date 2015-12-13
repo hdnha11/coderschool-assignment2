@@ -27,7 +27,7 @@ The following **optional** functionality is complete:
 
 * [ ] User can attach an image.
 * [ ] User can have multiple recipients on one message.
-* [ ] User can log in with Facebook.
+* [x] User can log in with Facebook.
 * [ ] Use of the [kaminari gem](https://github.com/amatsuda/kaminari) and [jquery-infinite-pages gem](https://github.com/magoosh/jquery-infinite-pages) to implement Infinite Scroll.
 * [ ] User gets an email when they receive a message, with a link to view the message.
 * [ ] User gets an email when a message they have sent is read with the time at which the message was read.

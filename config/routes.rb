@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'friend_request/:id' => 'users#friend_request', as: :friend_request
 
+  get 'auth/:provider/callback' => 'sessions#callback'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

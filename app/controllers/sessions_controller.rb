@@ -22,4 +22,13 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path
   end
+
+  def callback
+    if user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id
+      redirect_to messages_path, flash: {success: "Welcome #{user.name}"}
+    else
+      redirect_to root_path, flash: {error: "Cannot login with Facebook. Please try again!"}
+    end
+  end
 end
