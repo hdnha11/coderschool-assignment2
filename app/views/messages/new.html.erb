@@ -1,0 +1,20 @@
+<div class="container">
+    <h2 class="title">Send message</h2>
+
+    <div class="send-message-form">
+        <%= form_for(Message.new) do |f| %>
+            <fieldset class="form-group">
+                <%= f.label :recipient %>
+                <%= f.collection_select :recipient_id, @friends, :id, :name, {include_blank: true}, class: 'form-control' %>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <%= f.label :content %>
+                <%= f.text_area :content, class: "form-control", rows: 4 %>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Send</button>
+        <% end %>
+    </div>
+
+</div>

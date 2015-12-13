@@ -20,6 +20,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def friend_request
+    @friendable = current_user.friendables.build(:to_id => params[:id], accepted: "true") # accept by default
+      if @friendable.save
+        redirect_to messages_path, flash: {success: "Friend added"}
+      else
+        redirect_to messages_path, flash: {error: "Unable to request friendable"}
+      end
+  end
+
   private
 
   def get_user_params

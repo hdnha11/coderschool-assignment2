@@ -25,4 +25,30 @@ class MessagesController < ApplicationController
       end
     end
   end
+
+  def new
+    @friends = current_user.active_friends + current_user.passive_friends
+  end
+
+  def create
+    recipient_id = params[:message][:recipient_id]
+    content = params[:message][:content]
+
+    if recipient_id.nil? || recipient_id.empty?
+      redirect_to new_message_path, flash: {error: 'Cannot send message. You must choose recipient and type content.'}
+      return
+    end
+
+    message = Message.new
+    message.content = content
+    recipient = User.find(recipient_id)
+    message.recipient = recipient
+    message.sender = current_user
+
+    if message.save
+      redirect_to messages_path(type: 'outcomming'), flash: {success: "Send message to #{recipient.name} successfully"}
+    else
+      redirect_to new_message_path, flash: {error: 'Cannot send message. You must choose recipient and type content.'}
+    end
+  end
 end

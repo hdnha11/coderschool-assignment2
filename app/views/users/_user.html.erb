@@ -3,7 +3,7 @@
         <%= image_tag user.try(:image_url) || 'no-avatar.png', class: 'avatar' %>
         <div class="card-block">
             <h4 class="card-title"><%= user.try(:name) %></h4>
-            <a href="#" class="btn btn-primary-outline">Send message</a>
+            <%= link_to "Make friend", friend_request_path(id: user.id), class: "btn btn-primary-outline" %>
         </div>
     </div>
 </div>
